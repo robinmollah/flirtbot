@@ -2,21 +2,28 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static void main(String[] args) throws AWTException, InterruptedException {
-        String[] pickuplines = {
-            "Can I borrow a kiss? I promise I'll give it back.",
-            "Can I take your picture to prove to all my friends that angels do exist?",
-            "You're the only girl I love now... but in ten years, I'll love another girl. She'll call you 'Mommy.'",
-            "I will stop loving you when an apple grows from a mango tree on the 30th of February",
-            "I don't have a library card, but do you mind if I check you out?"
-        };
+    public static void main(String[] args) throws AWTException, InterruptedException, FileNotFoundException {
+        File fPickupLines = new File("./pickuplines.txt");
+        File fSalutes = new File("./salutes.txt");
+        File fNicknames = new File("./nicknames.txt");
+        Scanner sc = new Scanner(fPickupLines);
+
+        ArrayList<String> pickuplines = new ArrayList<String>();
+        while(sc.hasNextLine()){
+            pickuplines.add(sc.nextLine());
+        }
+
         Robot r = new Robot();
         TimeUnit.SECONDS.sleep(1);
         while(true){
-            String text = pickuplines[(int) (Math.random() * pickuplines.length)];
+            String text = pickuplines.get((int) (Math.random() * pickuplines.size()));
             StringSelection stringSelection = new StringSelection(text);
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(stringSelection, stringSelection);
