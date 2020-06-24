@@ -3,7 +3,7 @@
 FlirtBot is a Java program to send pickup lines to a target at specific interval.
 
 ### Installation
-* Donwload the repository
+* Click `clone` to Download the repository from [*release*](https://github.com/robinmollah/flirtbot/tree/release) branch
 * Go to the `src` folder and run the `Main.java` file
 
 ### How to use
